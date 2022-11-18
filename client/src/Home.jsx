@@ -38,7 +38,9 @@ function Home() {
   return (
     <div>
       <button onClick={() => setAddBowlModal((prev) => !prev)}>Add Bowl</button>
-      {inventory && inventory.map((item, index) => <ItemCards key={index} item={item} />)}
+      <div style={{display: "flex", marginTop:"10px"}}>
+        {inventory && inventory.map((item, index) => <ItemCards key={index} item={item} />)}
+      </div>
     </div>
   );
 }
