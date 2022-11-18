@@ -9,6 +9,7 @@ const BowlsSchema = new Schema({
   bowlId: String,
   name: String,
   price: String,
+  size: String,
   thumbnail: [String],
   category: String
 });
@@ -16,15 +17,24 @@ const BowlsSchema = new Schema({
 const Bowls = mongoose.model('Bowl', BowlsSchema);
 
 
-module.exports.addBowl = function (data, callback) {
-  // console.log('in db', data);
+module.exports.addABowl = function (data, callback) {
+  console.log('in db', data);
 
-
-  // Author.findOneAndUpdate({userName: data.user, authorName: data.author}, {userName: data.user, authorName: data.author}, {overwrite: true, upsert: true})
-  //   .then((res) => {
-  //     callback(null, res);
-  //   })
-  //   .catch(err => callback(err, null));
+  Bowls.findOneAndUpdate({name: data.name, price: data.price, size: data.size, thumbnail: data.images}, {name: data.name, price: data.price, size: data.size, thumbnail: data.images}, {overwrite: true, upsert: true})
+    .then((res) => {
+      console.log(res);
+      callback(null, res);
+    })
+    .catch(err => {
+      console.log(err)
+      callback(err, null)
+    });
 }
 
-module.exports = { Bowls }
+module.exports.getAllBowls = function (callback) {
+  Bowls.find()
+    .then(res => callback(null, res))
+    .catch(err => callback(err, null))
+}
+
+// module.exports = { Bowls }

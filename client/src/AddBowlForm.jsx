@@ -14,7 +14,7 @@ const Modal = styled.div`
 function AddBowlForm({ setAddBowlModal, submitForm }) {
   let [selectedImage, setSelectedImage] = useState([]);
   let [bowlName, setBowlName] = useState("");
-  let [category, setCategory] = useState("");
+  let [price, setPrice] = useState("");
   let [size, setSize] = useState("");
 
   function cloudinaryLoad(image) {
@@ -44,7 +44,7 @@ function AddBowlForm({ setAddBowlModal, submitForm }) {
         </button>
         <form
           onSubmit={() => {
-            submitForm(bowlName, category, size, selectedImage);
+            submitForm(bowlName, price, size, selectedImage);
             setAddBowlModal((prev) => !prev)
           }}
           className="well form-horizontal"
@@ -72,16 +72,16 @@ function AddBowlForm({ setAddBowlModal, submitForm }) {
             </div>
 
             <div className="form-group">
-              <label className="col-md-4 control-label">Category</label>
+              <label className="col-md-4 control-label">Price</label>
               <div className="col-md-4 inputGroupContainer">
                 <div className="input-group">
                   <span className="input-group-addon">
                     <i className="glyphicon glyphicon-earphone"></i>
                   </span>
                   <input
-                    name="category"
-                    onChange={(event) => setCategory(event.target.value)}
-                    placeholder="Category"
+                    name="Price"
+                    onChange={(event) => setPrice(event.target.value)}
+                    placeholder="Price"
                     className="form-control"
                     type="text"
                   />
